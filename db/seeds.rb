@@ -18,7 +18,7 @@ puts " ✔ \n\n"
 
 
 print 'create User'
-10.times do |index|
+3.times do |index|
   first_name = Faker::Name.first_name
   User.create(
     email: "#{first_name}@yopmail.com",
@@ -30,7 +30,7 @@ end
 puts " ✔"
 
 print 'create Events'
-10.times do |index|
+3.times do |index|
   Event.create(
     start_date: Faker::Date.forward(days = 365),
     duration: rand(1..200)*5,
@@ -44,7 +44,7 @@ end
 puts " ✔"
 
 print 'create participation'
-10.times do |index|
+3.times do |index|
   Participation.create(
     user_id: User.all.sample.id,
     event_id: Event.all.sample.id
