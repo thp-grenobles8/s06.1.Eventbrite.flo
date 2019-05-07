@@ -20,14 +20,16 @@ puts " ✔ \n\n"
 print 'create User'
 3.times do |index|
   first_name = Faker::Name.first_name
-  User.create(
+  User.create!(
     email: "#{first_name}@yopmail.com",
     description: Faker::Lorem.words(30).join(" ").capitalize,
     first_name: first_name,
-    last_name: Faker::Name.last_name
+    last_name: Faker::Name.last_name,
+    password: 'aaaaaa'
   )
 end
 puts " ✔"
+
 
 print 'create Events'
 3.times do |index|
