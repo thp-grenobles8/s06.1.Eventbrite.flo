@@ -7,9 +7,95 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="http://www.jacklmoore.com/colorbox/example1/colorbox.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/jumbotron/">
+
   </head>
+  <header>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" id='nav'>
+<a class="navbar-brand" href="/">The Event Project</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+    <!-- <li class="nav-item active">
+      <a class="nav-link" href="/team">The team <span class="sr-only">(current)</span></a>
+    </li> -->
+    <!-- <li class="nav-item">
+      <a class="nav-link" href="/contact">Nous contacter</a>
+    </li> -->
+    <li class="nav-item">
+      <a class="nav-link" href="<%=new_event_path%>">Créer un event</a>
+    </li>
+    <% if session[:user_id]%>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=user_path(current_user)%>">Mon profil</a>
+      </li>
+    <% end %>
+  </ul>
+  <ul class="navbar-nav">
+    <li>
+      <% if user_signed_in?%>
+      <li class="nav-item dropdown">
+        <a
+        class="nav-link dropdown-toggle"
+        href="#" id="navbarDropdown"
+        role="button"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        >Mon Profil</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="nav-link my-2 my-lg-0" href="<%=edit_user_registration_path%>">Mon Profil</a>
+          <hr>
+          <a
+            class="nav-link my-2 my-lg-0"
+            href="<%=destroy_user_session_path(current_user)%>"
+            data-method="delete"
+            data-confirm="Es-tu sûr de vouloir te déconnecter?">Se déconnecter
+          </a>
+        </div>
+      </li>
+        <% else %>
+        <li class="nav-item dropdown">
+          <a
+          class="nav-link dropdown-toggle"
+          href="#" id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >S'inscrire / Se connecter</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<%=new_user_registration_path%>">S'inscrire</a>
+            <hr>
+            <a class="dropdown-item" href="<%=new_user_session_path%>">Se connecter</a>
+          </div>
+        </li>
+      <% end %>
+  </ul>
+</div>
+</nav>
+</header>
+
+
+
+
 
   <body>
     <%= yield %>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
   </body>
 </html>
