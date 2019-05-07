@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :user_is_log, only: [:new, :create]
   def show
     @event_show = Event.find(params['id'])
   end
@@ -41,5 +42,14 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+  end
+
+  private
+
+  def user_is_log
+    unless user_signed_in?
+      flash[:not_author] = "Tu ne peux pas créer d'événement si tu n'es pas connecté"
+      redirect_to '/'
+    end
   end
 end

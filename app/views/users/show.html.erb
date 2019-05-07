@@ -15,7 +15,8 @@
           <h3 class="display-4">Informations complémentaires :</h3>
             <p> Email : <%= @user.email %></p>
             <p>Membre depuis le <%= @user.created_at.strftime('%D')%> à <%= @user.created_at.strftime('%T')%></p>
-            <a class="btn btn-primary btn-lg" href="<%=edit_user_registration_path%>" role="button">Modifier mes informations personnelles &raquo;</a>
+            <a class="btn btn-primary btn-lg" href="<%= edit_user_registration_path %>" role="button">Modifier mes informations personnelles &raquo;</a>
+            <a class="btn btn-primary btn-lg" href="<%= edit_user_path(@user.id) %>" role="button">Modifier mon profil &raquo;</a>
         </div>
         <hr>
         <div class="container">
@@ -29,10 +30,14 @@
               <div class="title_gossip">
                 <h2>Événement : <%=event.title%></h2>
               </div>
+              Date de l'événement : <%= event.start_date %><br>
+              Lieu de l'événement : <%= event.location %><br>
+              <i class="far fa-user"></i>(<%= event.users.length%>)
             </div>
           <% end %>
         </div>
       </div>
+      <br><br><br>
     </main>
   </body>
 </html>

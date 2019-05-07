@@ -21,6 +21,7 @@
             <h2><%=event.title%></h2>
           </div>
           L'administrateur : <%= link_to "#{event.admin.first_name} #{event.admin.last_name}", user_path(event.admin.id) %><br>
+          Date de l'événement : <%= event.start_date %><br>
           Lieu de l'événement : <%= event.location %><br>
           <i class="far fa-user"></i>(<%= event.users.length%>)
           <p><a class="btn btn-secondary" href="<%= event_path(event.id)%>" role="button">View details &raquo;</a></p>
