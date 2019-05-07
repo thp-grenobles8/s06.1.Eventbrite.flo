@@ -33,11 +33,15 @@
         </div>
       <% end %>
       <br><br>
-      <h1 class="h3 mb-3 font-weight-normal text-center">Cancel my account</h1>
 
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-      <%= link_to "Back", :back %>
+      <a
+        class="btn btn-danger btn-lg"
+        href="<%=registration_path(resource_name)%>"
+        data-method="delete"
+        data-confirm="Es-tu sûr de vouloir te supprimer ton compte?">Supprimer mon compte
+      </a>
+      <br><br>
+      <%= link_to 'Back', :back, class: "btn btn-lg btn-primary"%>
       <br><br><br>
     </div>
   </div>

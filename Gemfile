@@ -72,3 +72,6 @@ gem 'faker'
 gem 'pry'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'bootstrap4-datetime-picker-rails'
+
+gem 'momentjs-rails'

@@ -13,3 +13,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+//= require tempusdominus-bootstrap-4
+
+//= require moment

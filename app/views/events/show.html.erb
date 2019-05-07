@@ -1,2 +1,17 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<main role="main">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="title_gossip">
+        <h1 class="display-3">
+          Événement <%= @event_show.title%>
+        </h1>
+      </div>
+      <hr>
+      <p> Créé par : <%= @event_show.admin.email %></p>
+      <p> L'événement à lieu à : <%= @event_show.location%></p>
+      <p> Date de l'événement : <%= @event_show.start_date%></p>
+      <p> Durée de l'événement : <%= @event_show.duration%> minutes</p>
+      <p> Il y a <%= @event_show.users.length%> participants</p>
+    </div>
+  </div>
+</main>

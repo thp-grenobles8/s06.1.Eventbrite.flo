@@ -1,2 +1,32 @@
-<h1>Events#index</h1>
-<p>Find me in app/views/events/index.html.erb</p>
+<body>
+  <% if flash[:not_author] %>
+    <div class='alert alert-danger' role='alert'>
+      <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+        <span aria-hidden='true'>&times;</span>
+      </button> <%= flash[:not_author] %>
+    </div>
+    <% end %>
+  <main role="main">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">La super page d'accueil de The Event Project</h1>
+        <a class="btn btn-primary btn-lg" href="<%=new_event_path%>" role="button">Créer un nouvel événement &raquo;</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <% @events.each do |event| %>
+        <div class="col-md-4">
+          <div class="title_event">
+            <h2><%=event.title%></h2>
+          </div>
+          L'administrateur : <%= link_to "#{event.admin.first_name} #{event.admin.last_name}", user_path(event.admin.id) %><br>
+          Lieu de l'événement : <%= event.location %><br>
+          <i class="far fa-user"></i>(<%= event.users.length%>)
+          <p><a class="btn btn-secondary" href="<%= event_path(event.id)%>" role="button">View details &raquo;</a></p>
+        </div>
+        <%end %>
+      </div>
+    </div>
+  </main>
+</body>

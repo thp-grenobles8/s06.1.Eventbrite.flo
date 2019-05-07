@@ -14,14 +14,13 @@ class Event < ApplicationRecord
 
   validates :duration, presence: true
 
-  validate :duration_modulo_5
-  def duration_modulo_5
-    if !(self.duration % 5 == 0 && self.duration >= 5)
-      errors.add("doit être un multiple de 5")
-    end
+  validate :is_multiple_of_5
+  def is_multiple_of_5
+    errors.add(:duration, "must be multiple of 5 and greater or equal to 5") unless
+        duration % 5 == 0
   end
 
-  validates :title, presence: true, length: { in: 5..140 }
+  validates :title, presence: true, length: { in: 4..140 }
 
   validates :description, presence: true, length: { in: 20..1000 }
 
