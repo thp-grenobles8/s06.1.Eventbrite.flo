@@ -13,4 +13,19 @@
  *= require_tree .
  *= require_self
  */
-@import "tempusdominus-bootstrap-4.css"
+
+
+.event {
+  border-radius: 12px;
+  border: 1px solid grey;
+  margin: 10px;
+  padding: 10px;
+}
+.row {
+  display : flex;
+  justify-content : space-around;
+}
+.title_event {
+  background-color: LightGoldenrodYellow;
+
+}
