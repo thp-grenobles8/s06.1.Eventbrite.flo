@@ -1,15 +1,5 @@
 # Eventbrite Grenoble
 
-pourquoi ZE ? car lebonplan.herokuapp était déjà pris ...
-Plus le temps passe et plus on se dirige vers un internet
-privé de noms, ou tout a déjà été pris, et c'est une catastrophe
-
-## avertissement
-
-Mes choix esthétiques sont indiscutables,
-ce site a une apparence à la fois visionnaire
-et profondément ancrée dans nos racines communes.
-
 ## use
 
 Le site est visible sur [HEROKU eventbrite-grenoble.herokuapp.com](https://eventbrite-grenoble.herokuapp.com/)
