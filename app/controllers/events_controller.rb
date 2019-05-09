@@ -9,9 +9,25 @@ class EventsController < ApplicationController
   end
 
   def update
+    @update_event = Event.find(params[:id])
+    if @update_event.update(
+      start_date: params[:event_start_date],
+      title: params[:event_title],
+      duration: params[:event_duration],
+      price: params[:event_price],
+      description: params[:event_description]
+    )
+      flash[:success] = "L'événement a bien été modifié !"
+      redirect_to @update_event
+    else
+      flash[:error] = "L'événement n'a pas pu être mis à jour !"
+      redirect_to @update_event
+    end
   end
 
   def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
   end
 
   def create
@@ -44,6 +60,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @edit_event = Event.find(params[:id])
   end
 
   def index

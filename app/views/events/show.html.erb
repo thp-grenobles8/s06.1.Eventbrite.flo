@@ -1,18 +1,56 @@
 <main role="main">
+  <% if flash[:error] %>
+  <div class='alert alert-danger' role='alert'>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+    </button> <%= flash[:error] %>
+  </div>
+  <% end %>
+  <% if flash[:success] %>
+  <div class='alert alert-success' role='alert'>
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+    </button> <%= flash[:success] %>
+  </div>
+  <% end %>
   <div class="jumbotron">
     <div class="container">
       <div class="title_gossip">
         <h1 class="display-3">
-          <%= @event_show.title%>
+          <%= @event_show.title %>
         </h1>
+        <% if (user_signed_in? && (current_user != @event_show.admin) && !(@event_show.users.include? current_user)) %>
+          <%= form_tag event_participations_path(event_id: @event_show.id) do %>
+            <article>
+              <% if flash[:error].present? %>
+                <div id="error_explanation">
+                  <p><%= flash[:error] %></p>
+                </div>
+              <% end %>
+              <label class="amount">
+                <span>Amount: <%=@event_show.price.to_f / 100%></span>
+              </label>
+            </article>
+            <div class="form-group">
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description="Inscription to event"
+                data-amount= "<%=@event_show.price %>"
+                data-currency = "eur"
+                data-locale="auto"></script>
+            </div>
+          <% end %>
+        <% elsif user_signed_in? && (current_user == @event_show.admin) %>
+          <a class="btn btn-primary btn-lg" href="<%=event_participations_path(event_id: @event_show.id)%>" data-method="get" role="button">Mon espace événement &raquo;</a>
+        <% end %>
       </div>
       <hr>
       <p> Créé par : <%= @event_show.admin.email %></p>
-      <p> L'événement à lieu à : <%= @event_show.location%></p>
-      <p> Date de l'événement : <%= @event_show.start_date%></p>
-      <p> Durée de l'événement : <%= @event_show.duration%> minutes</p>
-      <p> Prix de l'événement : <%= @event_show.price%> €</p>
-      <p> Il y a <%= @event_show.users.length%> participants</p>
+      <p> L'événement à lieu à : <%= @event_show.location %></p>
+      <p> Date de l'événement : <%= @event_show.start_date %></p>
+      <p> Durée de l'événement : <%= @event_show.duration %> minutes</p>
+      <p> Prix de l'événement : <%= @event_show.price.to_f / 100 %> €</p>
+      <p> Il y a <%= @event_show.users.length %> participants</p>
     </div>
   </div>
 </main>

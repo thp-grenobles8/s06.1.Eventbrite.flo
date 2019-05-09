@@ -1,1 +1,50 @@
-df
+  <div class="container edit-event-title">
+    <div class="edit-event">
+      <h1 class="display-3">Modifier mon événement </h1>
+    </div>
+    <hr>
+  </div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="form">
+        <%= form_tag url_for(action: 'update'), method: "patch" do %>
+        <div class="form-group">
+          <%= label_tag "Titre de l'événement" %>
+          <%= text_field_tag 'event_title', @edit_event.title, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag "Date de l'événement" %>
+          <%= text_field_tag 'event_start_date', @edit_event.start_date, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag "Durée" %>
+          <%= text_field_tag 'event_duration', @edit_event.duration, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag "Prix" %>
+          <%= text_field_tag 'event_price', @edit_event.price, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag "Description" %>
+          <%= text_area_tag 'event_description', @edit_event.description, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag "Mettre à jour le potin", class: "btn btn-lg btn-primary btn-block"  %>
+        </div>
+        <% end %>
+      </div>
+      <a
+        class="btn btn-danger btn-lg"
+        href="<%= event_path(@edit_event.id) %>"
+        rel="nofollow"
+        data-method="delete"
+        data-confirm="Es-tu sûr de vouloir supprimer l'événement?"
+        role="button">Supprimer l'événement &raquo;
+      </a>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,51 @@
+
+  <div class="container">
+    <div class="title_gossip">
+      <h1 class="display-3">
+        <%= @event.title %>
+      </h1>
+    </div>
+    <hr>
+    <p> Créé par : <%= @event.admin.email %></p>
+    <p> L'événement à lieu à : <%= @event.location %></p>
+    <p> Date de l'événement : <%= @event.start_date.strftime('le %d-%m-%Y à %R') %></p>
+    <p> Durée de l'événement : <%= @event.duration %> minutes</p>
+    <p> Prix de l'événement : <%= @event.price.to_f / 100 %> €</p>
+    <p> Il y a <%= @event.users.length %> participants</p>
+    <a class="btn btn-primary btn-lg" href="<%= edit_event_path(@event.id) %>" role="button">Editer l'événement &raquo;</a>
+    <br><br><hr><br>
+
+  </div>
+  <div class="container">
+    <div class="row row-events">
+      <table class="table table-striped">
+        <tr>
+          <th>Nom du participant</th>
+          <th>Prénom du participant</th>
+          <th>Email du participant</th>
+          <th>Date d'inscription</th>
+          <th>Participant / Administrateur</th>
+
+
+        </tr>
+
+        <% @participations.each do |participation|%>
+          <tr>
+            <td><%= participation.user.last_name %></td>
+            <td><%= participation.user.first_name %></td>
+            <td><%= participation.user.email %></td>
+            <td><%= participation.created_at.strftime('le %d-%m-%Y à %R') %></td>
+            <td><% if participation.event.admin == participation.user %>
+              Administrateur
+              <% else %>
+              Participant
+              <% end %>
+            </td>
+
+
+          </tr>
+        <% end %>
+
+      </table>
+    </div>
+  </div>

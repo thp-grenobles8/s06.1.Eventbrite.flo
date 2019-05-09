@@ -75,3 +75,4 @@ gem 'dotenv-rails'
 gem 'bootstrap4-datetime-picker-rails'
 
 gem 'momentjs-rails'
+gem 'stripe'
