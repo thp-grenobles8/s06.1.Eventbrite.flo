@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :user_is_log, only: [:new, :create]
+  before_action :user_admin, only: [:edit, :update, :destroy]
   def show
     @event_show = Event.find(params['id'])
   end
@@ -71,7 +72,14 @@ class EventsController < ApplicationController
 
   def user_is_log
     unless user_signed_in?
-      flash[:not_author] = "Tu ne peux pas créer d'événement si tu n'es pas connecté"
+      flash[:error] = "Tu ne peux pas créer d'événement si tu n'es pas connecté"
+      redirect_to '/'
+    end
+  end
+
+  def user_admin
+    if current_user != Event.find(params[:id]).admin
+      flash[:error] = "Tu ne peux pas acceder à cette action si tu n'est pas l'administarateur de l'événement"
       redirect_to '/'
     end
   end

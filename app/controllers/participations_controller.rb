@@ -1,5 +1,6 @@
 class ParticipationsController < ApplicationController
   before_action :user_participation, only:[:create]
+  before_action :user_admin, only:[:index]
 
   def index
     @event = Event.find(params[:event_id])
@@ -44,6 +45,13 @@ class ParticipationsController < ApplicationController
     elsif Event.find(params[:event_id]).users.include? current_user
       flash[:error] = "Tu participe déjà à cet événement"
       redirect_to request.referrer
+    end
+  end
+
+  def user_admin
+    if current_user != Event.find(params[:event_id]).admin
+      flash[:error] = "Tu ne peux pas acceder à cette action si tu n'es pas l'administarateur de l'événement"
+      redirect_to '/'
     end
   end
 end
